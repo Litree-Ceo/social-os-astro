@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
-import '../styles/tailwind.css';
-import AgentConsole from '../components/AgentConsole.astro';
-import ChronoSync from '../components/ChronoSync.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AgentStatus from '../components/AgentStatus.jsx';
+
+const pageTitle = "ChronoSync: Temporal Infrastructure for Infinite Scale";
+const pageDescription = "ChronoSync provides the foundational layer for high-frequency trading, real-time simulations, and global temporal infrastructure.";
 ---
 
 <html lang="en">
@@ -12,102 +14,44 @@ import Header from '../components/Header.astro';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>LitLabs OS: The Decentralized AI Operating System</title>
-    <meta name="description" content="Welcome to LitLabs OS, a decentralized, AI-powered operating system for the new web. Explore the future of decentralized applications and AI integration." />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-gray-900 text-white font-sans overflow-hidden">
-    <div id="background-layer" class="background-layer"></div>
-    <div id="digital-dust" class="digital-dust"></div>
-    <div class="app-layout">
-      <ChronoSync />
-      <Header />
-      <main class="pt-16 relative z-10">
-        <slot />
-      </main>
-      <footer class="bg-transparent text-center py-6 px-4 sm:px-6 lg:px-8 relative z-10">
-          <p class="text-gray-500">&copy; {new Date().getFullYear()} LitLabs. All rights reserved.</p>
-      </footer>
-      <div class="agent-console-container">
-          <AgentConsole />
-      </div>
+  <body class="bg-gray-900 text-white font-sans">
+    <div class="absolute inset-0 -z-10 h-full w-full bg-gray-900 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+      <div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-cyan-400 opacity-20 blur-[100px]"></div>
     </div>
-    <style>
-      :root {
-        --font-primary: 'Inter', sans-serif;
-        --font-secondary: 'Space Grotesk', sans-serif;
-      }
+    <Header />
+    <main class="relative z-10">
+      <slot />
+    </main>
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-4">
+        <AgentStatus client:idle />
+        <a href="#" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg px-6 py-3 transition-colors duration-300">
+            Connect with Github
+        </a>
+    </div>
+    <Footer />
 
-      .background-layer {
-        position: fixed;
-        top: -50px; left: -50px; right: -50px; bottom: -50px;
-        background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-        transition: transform 0.1s linear;
-      }
+    <script>
+        // Add scroll animations to elements with the data-animate attribute
+        const animatedElements = document.querySelectorAll('[data-animate]');
 
-      .digital-dust {
-        position: fixed;
-        top: -50%; left: -50%; right: -50%; bottom: -50%;
-        width: 200%;
-        height: 200%;
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39tbW1dXV1ra2uEhISBgYGtra1bwKO+AAAAC3RSTlMAYGF/gIBAgIDAwMDBV1p2AAAA/klEQVR42pWVuQ7DIBAFxS2f5J917/++9wXh6g5eFPLp2mr0S43s/GgMVu//WHQsY2vVsl3bf6y6HrlP++w3G3vAlew4Q8gV//dJ/u9yR9XZt3AY/20T48h/32n2S/mI/2G6h/hJ/v0c23sK53gB/+4U/7wDo/2G+j9BPR+MhJ/E78G/8D/P4DkP8L+D4i/wL+H/l/4D/T/3An+A/z/eCfx//AP8G/u8A/wn/H/gP9F/u/wL/F/6/8D/h/9f+D/x//v/B/4f/H/h/9f/h/8f+H/x/7f/h//P/B/4f/H/g/8f/B/4f/B/+/+H/w//3/w//H/h/8P/x/4f/D/8f+H/w//H/h/+//B/4f+P/AF4QPLpL0zS0AAAAASUVORK5CYII=');
-        z-index: 2;
-        opacity: 0.02;
-        will-change: transform;
-        animation: noise-flicker 20s linear infinite;
-      }
-      
-      .app-layout {
-        position: relative;
-        z-index: 3;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        background: linear-gradient(180deg, rgba(18, 18, 20, 0.8) 0%, rgba(18, 18, 20, 0.95) 100%);
-        overflow-y: auto;
-        height: 100vh;
-      }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-      .agent-console-container {
-        position: fixed;
-        bottom: 1rem;
-        right: 1rem;
-        z-index: 1000;
-      }
-
-      @keyframes noise-flicker {
-        0%, 100% { opacity: 0.02; }
-        10% { opacity: 0.04; }
-        20% { opacity: 0.01; }
-        30% { opacity: 0.05; }
-        40% { opacity: 0.02; }
-        50% { opacity: 0.03; }
-        60% { opacity: 0.01; }
-        70% { opacity: 0.04; }
-        80% { opacity: 0.02; }
-        90% { opacity: 0.03; }
-      }
-    </style>
-
-    <script is:inline>
-      document.addEventListener('mousemove', (e) => {
-        const bg = document.getElementById('background-layer');
-        const dust = document.getElementById('digital-dust');
-        const x = (e.clientX / window.innerWidth) - 0.5;
-        const y = (e.clientY / window.innerHeight) - 0.5;
-
-        if (bg) {
-          bg.style.transform = `translateX(${-x * 20}px) translateY(${-y * 20}px)`;
-        }
-        if (dust) {
-          dust.style.transform = `translateX(${-x * 30}px) translateY(${-y * 30}px)`;
-        }
-      });
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
     </script>
   </body>
 </html>
