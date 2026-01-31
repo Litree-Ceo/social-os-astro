@@ -10,6 +10,10 @@ import AgentConsole from '../components/AgentConsole.astro';
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>LitLabs OS</title>
+    <meta name="description" content="LitLabs OS is a decentralized AI operating system for the new web." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="app-layout">
@@ -20,10 +24,10 @@ import AgentConsole from '../components/AgentConsole.astro';
         </div>
         <nav class="navigation">
           <ul>
-            <li><a href="/">Dashboard</a></li>
-            <li><a href="/studio">Studio</a></li>
-            <li><a href="/lab">Lab</a></li>
-            <li><a href="/network">Network</a></li>
+            <li><a href="/" aria-label="Dashboard">Dashboard</a></li>
+            <li><a href="/studio" aria-label="Studio">Studio</a></li>
+            <li><a href="/lab" aria-label="Lab">Lab</a></li>
+            <li><a href="/network" aria-label="Network">Network</a></li>
           </ul>
         </nav>
       </aside>

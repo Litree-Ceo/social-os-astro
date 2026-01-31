@@ -1,25 +1,30 @@
 ---
-// This will be an interactive component
+// AgentConsole.astro
 ---
-
 <div id="agent-console" class="glass-card">
-  <div class="console-header">
-    <span>Agent: Nexus</span>
-    <div class="controls">
-      <button class="control-btn minimize">-</button>
-      <button class="control-btn close">x</button>
-    </div>
-  </div>
-  <div class="console-body">
-    <!-- Chat history will go here -->
-    <div class="message agent">Hello! How can I assist you today?</div>
-    <div class="message user">Tell me about Astro.</div>
-  </div>
-  <div class="console-input">
-    <input type="text" placeholder="Instruct Nexus..." />
-    <button>Send</button>
+  <h3>Neural Link Required</h3>
+  <p>Connect to LitLabs OS to access your full suite of AI agents and tools.</p>
+  <div class="auth-buttons">
+    <button id="login-google" class="btn google-btn">Connect via Google</button>
+    <button id="login-github" class="btn github-btn">Connect via GitHub</button>
   </div>
 </div>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  const login = async (provider: 'google' | 'github') => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/api/auth/callback`,
+      },
+    });
+  };
+
+  document.getElementById('login-google')?.addEventListener('click', () => login('google'));
+  document.getElementById('login-github')?.addEventListener('click', () => login('github'));
+</script>
 
 <style>
   #agent-console {
@@ -27,67 +32,43 @@
     bottom: 2rem;
     right: 2rem;
     width: 380px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
     z-index: 1000;
+    padding: 1.5rem;
   }
-  .console-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
+  h3 {
     font-family: var(--font-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
-  .controls .control-btn {
-    background: none;
-    border: none;
+  p {
     color: var(--color-text-secondary);
-    cursor: pointer;
-    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
   }
-  .console-body {
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: auto;
-  }
-  .message {
-    margin-bottom: 1rem;
-    padding: 0.5rem 1rem;
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
     border-radius: 8px;
-    max-width: 80%;
-  }
-  .message.agent {
-    background: var(--color-accent);
-    color: var(--color-text-primary);
-    align-self: flex-start;
-  }
-  .message.user {
-    background: rgba(255, 255, 255, 0.1);
-    align-self: flex-end;
-    margin-left: auto;
-  }
-  .console-input {
-    display: flex;
-    padding: 1rem;
-    border-top: 1px solid var(--color-border);
-  }
-  .console-input input {
-    flex-grow: 1;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 0.5rem;
-    color: var(--color-text-primary);
-  }
-  .console-input button {
-    background: var(--color-accent);
     border: none;
-    color: var(--color-text-primary);
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
     cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    transition: background-color 0.3s ease;
+  }
+  .google-btn {
+    background-color: #4285F4;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  .google-btn:hover {
+    background-color: #5a9bff;
+  }
+  .github-btn {
+    background-color: #333;
+    color: white;
+  }
+  .github-btn:hover {
+    background-color: #444;
   }
 </style>
