@@ -1,1 +1,58 @@
-@import "tailwindcss";
+
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* === CSS RESET === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === GLOBAL STYLES === */
+:root {
+  /* COLORS */
+  --color-bg: #05070A;
+  --color-card: rgba(13, 17, 23, 0.7);
+  --color-accent: #7B61FF;
+  --color-terminal: #00FF41;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0AEC0;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  /* TYPOGRAPHY */
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Space Grotesk', sans-serif;
+
+  /* GLASSMORPHISM */
+  --glass-blur: blur(12px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+html {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+body {
+  min-height: 100vh;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* === UTILITY CLASSES === */
+.glass-card {
+  background: var(--color-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border: 1px solid rgba(123, 97, 255, 0.5);
+}

@@ -1,0 +1,93 @@
+---
+// This will be an interactive component
+---
+
+<div id="agent-console" class="glass-card">
+  <div class="console-header">
+    <span>Agent: Nexus</span>
+    <div class="controls">
+      <button class="control-btn minimize">-</button>
+      <button class="control-btn close">x</button>
+    </div>
+  </div>
+  <div class="console-body">
+    <!-- Chat history will go here -->
+    <div class="message agent">Hello! How can I assist you today?</div>
+    <div class="message user">Tell me about Astro.</div>
+  </div>
+  <div class="console-input">
+    <input type="text" placeholder="Instruct Nexus..." />
+    <button>Send</button>
+  </div>
+</div>
+
+<style>
+  #agent-console {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 380px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  .console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-secondary);
+  }
+  .controls .control-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  .console-body {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .message {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+  .message.agent {
+    background: var(--color-accent);
+    color: var(--color-text-primary);
+    align-self: flex-start;
+  }
+  .message.user {
+    background: rgba(255, 255, 255, 0.1);
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  .console-input {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .console-input input {
+    flex-grow: 1;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    color: var(--color-text-primary);
+  }
+  .console-input button {
+    background: var(--color-accent);
+    border: none;
+    color: var(--color-text-primary);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+</style>

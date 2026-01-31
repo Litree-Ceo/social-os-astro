@@ -1,11 +1,80 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <h1 class="dashboard-title">Neural Mission Control</h1>
+  <p class="dashboard-subtitle">Welcome to LitLabs OS. Your portal to creation and discovery.</p>
+  
+  <div class="grid-container">
+    <div class="glass-card metric-card">
+      <h2 class="metric-title">Intelligence Quotient</h2>
+      <p class="metric-value">98.4%</p>
+    </div>
+    <div class="glass-card metric-card">
+      <h2 class="metric-title">System Latency</h2>
+      <p class="metric-value">14ms</p>
+    </div>
+    <div class="glass-card metric-card">
+      <h2 class="metric-title">Active Uplinks</h2>
+      <p class="metric-value">42</p>
+    </div>
+  </div>
+  
+  <div class="glass-card transmissions-card">
+    <h2 class="card-title">Active Transmissions</h2>
+    <ul>
+      <li>[Nexus] :: Synthesizing cinematic landscape...</li>
+      <li>[Lab] :: Analyzing market trends for Q3...</li>
+      <li>[System] :: User 'julian' joined the Tribe.</li>
+    </ul>
+  </div>
 </Layout>
+
+<style>
+  .dashboard-title {
+    font-family: var(--font-secondary);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .dashboard-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .metric-card {
+    padding: 1.5rem;
+  }
+  .metric-title {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  .metric-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .transmissions-card {
+    padding: 1.5rem;
+  }
+  .card-title {
+    font-family: var(--font-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .transmissions-card ul {
+    list-style: none;
+  }
+  .transmissions-card li {
+    font-family: var(--font-secondary);
+    margin-bottom: 0.5rem;
+  }
+</style>
