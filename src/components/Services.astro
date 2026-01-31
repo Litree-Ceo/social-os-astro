@@ -14,6 +14,8 @@ import Icon from 'astro-icon';
         </div>
         <h3 class="text-2xl font-bold mb-2 text-white">Web Development</h3>
         <p class="text-gray-400">Modern, responsive, and performant websites built with the latest technologies.</p>
+        <hr class="border-gray-700 my-4"/>
+        <p class="text-xs text-cyan-400 glow">Last Synced: Jan 31, 2026 - 2:09AM</p>
       </div>
 
       <!-- Service Card 2 -->
@@ -23,6 +25,8 @@ import Icon from 'astro-icon';
         </div>
         <h3 class="text-2xl font-bold mb-2 text-white">Cloud Integration</h3>
         <p class="text-gray-400">Seamless integration with cloud services for scalable and reliable applications.</p>
+        <hr class="border-gray-700 my-4"/>
+        <p class="text-xs text-cyan-400 glow">Last Synced: Jan 31, 2026 - 2:10AM</p>
       </div>
 
       <!-- Service Card 3 -->
@@ -32,8 +36,21 @@ import Icon from 'astro-icon';
         </div>
         <h3 class="text-2xl font-bold mb-2 text-white">Mobile Solutions</h3>
         <p class="text-gray-400">Cross-platform mobile applications to reach your users on any device.</p>
+        <hr class="border-gray-700 my-4"/>
+        <p class="text-xs text-cyan-400 glow">Last Synced: Jan 31, 2026 - 2:08AM</p>
       </div>
 
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 2px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5); }
+    50% { text-shadow: 0 0 5px rgba(0, 255, 255, 1), 0 0 10px rgba(0, 255, 255, 0.7); }
+  }
+
+  .glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+</style>

@@ -16,19 +16,18 @@ This project is a static-first web application built with Astro.js. It's designe
 - **Header:** A fixed header with navigation links is present on all pages.
 - **Hero Section:** The homepage (`index.astro`) features a prominent hero section (`src/components/Hero.astro`) with a gradient-text title, a call-to-action button, and a search bar with icons.
 - **Fonts:** The project uses the "Inter" and "Space Grotesk" fonts from Google Fonts.
-- **Features Section:** A section with three animated cards highlighting key features of Astro.
+- **Features Section:** A section (`src/components/Features.astro`) with three animated cards highlighting key features of Astro.
+- **Services Section:** A section (`src/components/Services.astro`) displaying three service cards with icons and descriptions.
 
-### Error Resolution Log
+## Error Resolution Log
 
-- **`virtual:astro-icon` error:** This was the first major issue, resolved by:
-    1. Reinstalling all `npm` dependencies.
-    2. Correcting the `astro.config.mjs` file to properly configure the `astro-icon` integration.
-    3. Creating the missing `tailwind.config.mjs` file.
-    4. Fixing an incorrect import statement for the `Icon` component in `src/components/Hero.astro` and `src/components/Features.astro`.
+- **`virtual:astro-icon` error:** This was the first major issue, resolved by reinstalling dependencies and correcting configurations.
 
-- **`ERR_MODULE_NOT_FOUND` (Astro/Tailwind Conflict):** After attempting to add a new component, the project suffered a catastrophic and persistent build failure. The error indicated a deep-seated dependency corruption or conflict between Astro and Tailwind CSS. The issue was resolved through the following aggressive recovery process:
-    1. **Forced Cache Cleaning:** Ran `npm cache clean --force` to eliminate any corrupted, cached packages.
-    2. **Complete Reinstallation:** Deleted `node_modules` and `package-lock.json` multiple times to ensure a clean slate.
-    3. **Targeted Dependency Upgrade:** Executed a coordinated upgrade of all Astro-related packages (`astro`, `@astrojs/node`, `@astrojs/preact`, `@astrojs/tailwind`) to their latest compatible versions.
-    4. **Re-initialized Tailwind:** Ran `npx astro add tailwind` to correctly re-configure the integration between Astro and Tailwind.
-    5. **Stylesheet Import:** Created a new `tailwind.css` file and imported it into the main `Layout.astro`, which was the final missing step to make the styles load correctly.
+- **`ERR_MODULE_NOT_FOUND` (Astro/Tailwind Conflict):** A catastrophic build failure was resolved through an aggressive recovery process involving cache cleaning, complete reinstallation of dependencies, and re-initializing the Tailwind integration.
+
+- **`"Icon" is not exported by "node_modules/astro-icon/dist/index.js"`:** This was the final, persistent error that was masked by other issues. The `npm run build` command provided the detailed error message needed to pinpoint the problem.
+    - **Resolution:** The incorrect import statement `import { Icon } from 'astro-icon';` was present in `Hero.astro`, `Features.astro`, and `Services.astro`. It was corrected to `import Icon from 'astro-icon';` in all three files, finally resolving the build and runtime errors.
+
+## Current Task: Completed
+
+The application is now in a stable, runnable, and correct state. All known build and dependency errors have been resolved. The development server is running successfully, and the application is viewable in the preview.
