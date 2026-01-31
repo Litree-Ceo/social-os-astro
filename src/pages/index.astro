@@ -7,51 +7,69 @@ import Icon from 'astro-icon';
   <div class="relative z-10">
     <!-- Hero Section -->
     <section class="text-center py-20 px-4 sm:px-6 lg:px-8">
-      <div class="absolute inset-0 -z-10 overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl opacity-50"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/4 -translate-y-1/4 w-72 h-72 bg-pink-600/30 rounded-full blur-3xl opacity-40"></div>
-      </div>
+        <div class="inline-block bg-cyan-500/20 text-cyan-300 text-sm font-medium rounded-full px-4 py-1 mb-6">
+            v4.0 ChronoMesh is now live
+        </div>
       <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-4 font-display">
-        Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">ChronoSync</span>
+        Temporal Sync for <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">Infinite Scale.</span>
       </h1>
-      <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300">
-        The decentralized AI operating system for the new web. Experience the pulse of a connected, intelligent future.
+      <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-8">
+        ChronoSync provides the foundational layer for high-frequency trading, real-time simulations, and global temporal infrastructure.
       </p>
+      <div>
+        <a href="/studio" class="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg px-6 py-3 transition-colors duration-300 mx-2">
+          Launch Studio &rarr;
+        </a>
+        <a href="/network" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg px-6 py-3 transition-colors duration-300 mx-2">
+          Monitor Network
+        </a>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Feature Card 1 -->
-        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-purple-500/80">
-          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-purple-600/50 mb-4">
-            <Icon name="mdi:brain-outline" class="w-6 h-6 text-purple-300" />
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-cyan-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-600/50 mb-4">
+            <Icon name="mdi:flash" class="w-6 h-6 text-cyan-300" />
           </div>
-          <h3 class="text-xl font-bold text-white mb-2">Intelligence Hub</h3>
+          <h3 class="text-xl font-bold text-white mb-2">Nanosecond Precision</h3>
           <p class="text-gray-400 text-sm">
-            Your AI command center. Autonomous agents, real-time analytics, and predictive insights will be managed from this nexus.
+            Synchronize global infrastructure with atomic-clock accuracy across regions.
           </p>
         </div>
 
         <!-- Feature Card 2 -->
-        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-cyan-500/80">
-          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-600/50 mb-4">
-            <Icon name="mdi:server-network" class="w-6 h-6 text-cyan-300" />
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-blue-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-600/50 mb-4">
+            <Icon name="mdi:shield-check-outline" class="w-6 h-6 text-blue-300" />
           </div>
-          <h3 class="text-xl font-bold text-white mb-2">System Status</h3>
+          <h3 class="text-xl font-bold text-white mb-2">Quantum Guard</h3>
           <p class="text-gray-400 text-sm">
-            Monitor the health and performance of your decentralized network in real-time. Ensure all systems are operational.
+            Protect your temporal packets with post-quantum encryption standards.
           </p>
         </div>
 
         <!-- Feature Card 3 -->
-        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-pink-500/80">
-          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-pink-600/50 mb-4">
-            <Icon name="mdi:lightbulb-on-outline" class="w-6 h-6 text-pink-300" />
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-teal-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-teal-600/50 mb-4">
+            <Icon name="mdi:earth" class="w-6 h-6 text-teal-300" />
           </div>
-          <h3 class="text-xl font-bold text-white mb-2">LitLabs Studio</h3>
+          <h3 class="text-xl font-bold text-white mb-2">Global Mesh</h3>
           <p class="text-gray-400 text-sm">
-            The creative core of the OS. Develop, test, and deploy decentralized applications and AI models with a powerful suite of tools.
+            Seamlessly connect edge deployments across 50+ sovereign regions.
+          </p>
+        </div>
+
+        <!-- Feature Card 4 -->
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-indigo-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-600/50 mb-4">
+            <Icon name="mdi:lock-check-outline" class="w-6 h-6 text-indigo-300" />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Zero Trust Sync</h3>
+          <p class="text-gray-400 text-sm">
+            Authentication baked into every synchronization heartbeat.
           </p>
         </div>
       </div>

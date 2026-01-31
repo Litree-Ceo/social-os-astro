@@ -2,35 +2,17 @@
 
 ## 1. Overview
 
-ChronoSync is a web application designed to be a modern, intuitive, and visually engaging platform. The goal is to create a seamless user experience with a focus on performance and aesthetics, built with Astro.js and Firebase.
+ChronoSync is a web application designed to be a modern, intuitive, and visually engaging platform. The goal is to create a seamless user experience with a focus on performance and aesthetics, built with Astro.js and Firebase. The target design is a comprehensive development tool for next-gen temporal infrastructure engineers, featuring modules like Temporal AI, a Data Simulator, and an Image Forge.
 
 ## 2. Style, Design, and Features
 
-This section documents the visual and functional characteristics of the application as they are implemented.
+This section documents the application's features as they are rebuilt to match the target design.
 
-### Initial State:
 *   **Framework:** Astro.js
-*   **Styling:** Basic CSS with a "digital dust" background effect.
-*   **Layout:** A simple layout defined in `src/layouts/Layout.astro`.
-*   **Pages:** `index.astro`, `lab.astro`, `network.astro`, `studio.astro`.
-*   **Backend:** Firebase configured for hosting and Firestore.
-
-### Visual and Structural Enhancement:
-*   **Modern Layout:** The core layout in `src/layouts/Layout.astro` has been updated with a sophisticated dark theme, a vibrant color palette, and improved typography.
-*   **Reusable Header:** A new `Header.astro` component in `src/components/` provides consistent navigation across all pages.
-*   **Redesigned Pages:** The `index.astro`, `studio.astro`, `lab.astro`, and `network.astro` pages have been redesigned with a modern aesthetic, including hero sections, feature cards, and icons.
-*   **Tailwind CSS:** The project now uses Tailwind CSS for styling, with a custom configuration in `tailwind.config.mjs`.
-*   **Global Styles:** The `src/styles/global.css` file has been simplified to rely on Tailwind CSS.
-
-### Real-Time Network Data:
-*   **Firebase Integration:** The project has been initialized with Firebase, and the client-side Firebase configuration has been set up in `src/firebase/client.ts`.
-*   **Firestore Database:** A Cloud Firestore database has been set up to store network data.
-*   **API Route:** An API route at `src/pages/api/network-status.json.js` has been created to fetch the latest network status from Firestore.
-*   **Interactive Component:** A Preact component, `src/components/NetworkStatus.jsx`, has been created to display the network status in real-time.
-*   **Network Page Integration:** The `NetworkStatus` component has been integrated into the `network.astro` page to display the real-time data.
-
-### Interactive Studio Page:
-*   **Interactive Log Component:** A Preact component, `src/components/DeployLog.jsx`, has been created to simulate a real-time log stream.
-*   **Studio Page Integration:** The `DeployLog` component has been integrated into the `studio.astro` page, appearing when the "Deploy" button is clicked.
+*   **Styling:** Tailwind CSS with a sophisticated dark theme, vibrant gradients, and modern UI components.
+*   **Layout:** A main layout with a consistent header and a central content area.
+*   **Pages:** A main dashboard (`index.astro`), a Lab for experiments, a Network monitor, and a Studio for development.
+*   **Home Page:** The home page is now a dashboard that matches the modern UI from the screenshot. It features the headline "Temporal Sync for Infinite Scale," action buttons, and four feature cards: "Nanosecond Precision," "Quantum Guard," "Global Mesh," and "Zero Trust Sync."
+*   **Header:** The header now displays the "CHRONOSYNC" brand and has navigation links for "Dashboard," "Lab," "Network," and "Studio."
 
 ## 3. Current Plan: Completed
