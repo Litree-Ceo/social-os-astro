@@ -1,36 +1,43 @@
-# LitLabs OS - Project Blueprint
+# ChronoSync Blueprint
 
-## 1. Overview
+## 1. Purpose & Capabilities
 
-LitLabs OS is a decentralized, AI-powered operating system for the new web, designed to provide a seamless and intuitive user experience. It features a real-time social feed called the "Pulse Stream," where users can share and interact with content. The application is built with Astro.js and Firebase, emphasizing performance, real-time interactivity, and a modern, visually engaging design.
+ChronoSync is a sleek, high-performance web application built with Astro.js. It's designed to be a content-focused site with interactive elements, showcasing the power of Astro's Islands Architecture.
 
-## 2. Current State
+## 2. Architecture & Design
+
+### Core Technologies
 
 *   **Framework:** Astro.js
-*   **Backend:** Firebase (Authentication and Firestore)
-*   **Core Feature:** A real-time "Pulse Stream" feed that displays posts from a Firestore collection.
-*   **Authentication:** Users can sign in with their Google accounts to create new posts.
-*   **Layout:** A three-column layout with a central feed, a user identity card on the left, and an "Intelligence Hub" on the right.
-*   **Branding:** The name is established as "LitLabs OS", but the design is basic and requires polish.
-*   **Styling:** Basic styling with Tailwind CSS and a `digital-dust` background effect.
+*   **Styling:** Tailwind CSS
+*   **Deployment:** Firebase Hosting
 
-## 3. Project Update Plan
+### Style & Design
 
-**Goal:** To elevate the existing "LitLabs OS" application from a functional prototype into a polished, visually stunning, and cohesive product that embodies its brand as a next-generation AI operating system.
+*   **Layout:** Modern, visually balanced layout with clean spacing.
+*   **Typography:** Expressive and relevant typography with a clear hierarchy.
+*   **Color Palette:** Vibrant and energetic color palette.
+*   **Iconography:** Modern, interactive iconography to enhance user understanding.
+*   **Interactivity:** Smooth animations and effects for an engaging user experience.
 
-**Detailed Steps:**
+### Features
 
-1.  **Solidify the "LitLabs OS" Brand:**
-    *   Update the page title and meta description in `src/layouts/Layout.astro` to be more descriptive and on-brand.
-    *   Ensure all placeholder text is replaced with content that reflects the "LitLabs OS" identity.
+*   **Hero Section:** A bold and engaging hero section that grabs the user's attention.
+*   **Features Section:** A dedicated section to highlight the key features of the application.
+*   **Services Section:** A section to showcase the services offered.
+*   **Interactive Feed:** A dynamic and interactive feed for displaying real-time data.
+*   **Theme Switcher:** A user-friendly theme switcher to toggle between light and dark modes.
 
-2.  **Visual Overhaul:**
-    *   **Layout:** Redesign the main page layout to be more dynamic, modern, and less rigid.
-    *   **Background Effect:** Refine the `digital-dust` background effect to be more subtle and sophisticated.
+## 3. Current Plan: Refactor to Astro-Native
 
-3.  **Component Refinement:**
-    *   **`Services.astro`:** Remove the static "Last Synced" date to make the component feel more dynamic and less like a template.
+### Overview
 
-4.  **Enhance User Experience:**
-    *   Improve the overall flow and interactivity of the application.
-    *   Ensure a consistent and polished look and feel across all components.
+The current plan is to refactor the project to be more Astro-native. This involves converting most of the existing `.jsx` components to `.astro` components, which will improve performance and simplify the codebase. The `ThemeSwitcher.jsx` component will be preserved as a Preact component to maintain its interactive functionality.
+
+### Action Steps
+
+1.  **Convert `AgentConsole.jsx` to `AgentConsole.astro`:** The `AgentConsole.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
+2.  **Convert `Auth.jsx` to `Auth.astro`:** The `Auth.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
+3.  **Convert `InteractiveFeed.jsx` to `InteractiveFeed.astro`:** The `InteractiveFeed.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
+4.  **Convert `Post.jsx` to `Post.astro`:** The `Post.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
+5.  **Update `index.astro`:** The `index.astro` page will be updated to import and use the new `.astro` components.
