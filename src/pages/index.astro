@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import InteractiveFeed from '../components/InteractiveFeed.jsx';
+import InteractiveFeed from '../components/InteractiveFeed.astro';
 import Icon from 'astro-icon';
 ---
 
@@ -25,7 +25,7 @@ import Icon from 'astro-icon';
       
       <!-- Main Column: Pulse Stream -->
       <main class="col-span-1 lg:col-span-2">
-        <InteractiveFeed client:load />
+        <InteractiveFeed />
       </main>
 
       <!-- Right Column: Intelligence Hub -->

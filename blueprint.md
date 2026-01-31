@@ -1,43 +1,35 @@
-# ChronoSync Blueprint
+# Project Blueprint
 
-## 1. Purpose & Capabilities
+## Overview
 
-ChronoSync is a sleek, high-performance web application built with Astro.js. It's designed to be a content-focused site with interactive elements, showcasing the power of Astro's Islands Architecture.
+This project is a decentralized AI operating system for the new web, built with Astro.js and Firebase. It features a real-time interactive feed, user authentication, and a modern, visually appealing interface.
 
-## 2. Architecture & Design
+## Design and Features
 
-### Core Technologies
+### Style and Design
 
-*   **Framework:** Astro.js
-*   **Styling:** Tailwind CSS
-*   **Deployment:** Firebase Hosting
+- **Layout:** A responsive grid-based layout with a main content area and a sidebar for additional information.
+- **Color Palette:** A dark-themed interface with vibrant gradients and highlights, creating a futuristic and energetic look.
+- **Typography:** A clean, modern font that is easy to read and emphasizes key information.
+- **Iconography:** A set of icons to enhance the user's understanding and navigation of the application.
 
-### Style & Design
+### Implemented Features
 
-*   **Layout:** Modern, visually balanced layout with clean spacing.
-*   **Typography:** Expressive and relevant typography with a clear hierarchy.
-*   **Color Palette:** Vibrant and energetic color palette.
-*   **Iconography:** Modern, interactive iconography to enhance user understanding.
-*   **Interactivity:** Smooth animations and effects for an engaging user experience.
+- **User Authentication:** Users can sign in with their Google account to post on the interactive feed.
+- **Real-Time Feed:** A real-time feed that displays posts from all users, updating automatically as new posts are created.
+- **Post Creation:** Authenticated users can create new posts with text and optional images.
 
-### Features
+## Current Plan
 
-*   **Hero Section:** A bold and engaging hero section that grabs the user's attention.
-*   **Features Section:** A dedicated section to highlight the key features of the application.
-*   **Services Section:** A section to showcase the services offered.
-*   **Interactive Feed:** A dynamic and interactive feed for displaying real-time data.
-*   **Theme Switcher:** A user-friendly theme switcher to toggle between light and dark modes.
+### Task: Convert Preact Components to Astro Components
 
-## 3. Current Plan: Refactor to Astro-Native
-
-### Overview
-
-The current plan is to refactor the project to be more Astro-native. This involves converting most of the existing `.jsx` components to `.astro` components, which will improve performance and simplify the codebase. The `ThemeSwitcher.jsx` component will be preserved as a Preact component to maintain its interactive functionality.
-
-### Action Steps
-
-1.  **Convert `AgentConsole.jsx` to `AgentConsole.astro`:** The `AgentConsole.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
-2.  **Convert `Auth.jsx` to `Auth.astro`:** The `Auth.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
-3.  **Convert `InteractiveFeed.jsx` to `InteractiveFeed.astro`:** The `InteractiveFeed.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
-4.  **Convert `Post.jsx` to `Post.astro`:** The `Post.jsx` component will be converted to an Astro component. This will involve rewriting the JSX to Astro's HTML-like syntax and updating the import statements.
-5.  **Update `index.astro`:** The `index.astro` page will be updated to import and use the new `.astro` components.
+- **Objective:** To migrate the application from Preact to Astro, leveraging Astro's Islands Architecture for improved performance and a better developer experience.
+- **Steps:**
+  1. **Convert `AgentConsole.jsx` to `AgentConsole.astro`:** The typewriter effect will be replaced with static text, and the button's functionality will be preserved using a client-side `<script>` tag.
+  2. **Convert `Auth.jsx` to `Auth.astro`:** The authentication logic will be moved into a `<script>` tag, and the page will reload on sign-in/sign-out to reflect the updated authentication state.
+  3. **Convert `InteractiveFeed.jsx` to Astro Components:** The component will be broken down into smaller, more manageable Astro components:
+     - `CreatePost.astro`: A form for creating new posts with client-side interactivity.
+     - `Post.astro`: A component for displaying individual posts with client-side time formatting.
+     - `InteractiveFeed.astro`: The main component that orchestrates the feed, fetches and displays posts from Firestore, and handles user authentication.
+  4. **Update `src/pages/index.astro`:** The main page will be updated to use the new Astro components.
+  5. **Create `blueprint.md`:** A blueprint file will be created to document the project's structure, design, and features.
