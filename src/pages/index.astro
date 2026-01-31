@@ -17,7 +17,6 @@ import Icon from 'astro-icon';
       <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300">
         The decentralized AI operating system for the new web. Experience the pulse of a connected, intelligent future.
       </p>
-      <button id="seed-button" class="mt-8 px-6 py-2 bg-purple-600 text-white rounded-lg">Seed Database</button>
     </section>
 
     <!-- Features Section -->
@@ -58,12 +57,4 @@ import Icon from 'astro-icon';
       </div>
     </section>
   </div>
-  <script>
-    document.getElementById('seed-button').addEventListener('click', () => {
-      fetch('/api/seed')
-        .then(response => response.json())
-        .then(data => console.log('Seeded database:', data))
-        .catch(error => console.error('Error seeding database:', error));
-    });
-  </script>
 </Layout>
