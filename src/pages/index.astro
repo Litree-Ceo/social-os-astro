@@ -1,80 +1,120 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <Layout>
-  <h1 class="dashboard-title">Neural Mission Control</h1>
-  <p class="dashboard-subtitle">Welcome to LitLabs OS. Your portal to creation and discovery.</p>
-  
-  <div class="grid-container">
-    <div class="glass-card metric-card">
-      <h2 class="metric-title">Intelligence Quotient</h2>
-      <p class="metric-value">98.4%</p>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">The Future of Web Development is Here</h1>
+      <p class="hero-subtitle">Build faster, more performant websites with Astro's next-gen architecture. Zero JavaScript by default, and a universe of integrations.</p>
+      <a href="/studio" class="hero-cta">Get Started</a>
     </div>
-    <div class="glass-card metric-card">
-      <h2 class="metric-title">System Latency</h2>
-      <p class="metric-value">14ms</p>
+  </section>
+
+  <section class="features">
+    <div class="feature-grid">
+      <div class="card">
+        <div class="card-icon">
+          <Icon name="mdi:rocket-launch" />
+        </div>
+        <h3 class="card-title">Blazing Fast</h3>
+        <p class="card-description">Astro pages are pre-rendered to static HTML, resulting in the fastest possible load times.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <Icon name="mdi:island" />
+        </div>
+        <h3 class="card-title">Islands Architecture</h3>
+        <p class="card-description">Ship zero JavaScript by default. Opt-in to client-side interactivity only when you need it.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <Icon name="mdi:puzzle" />
+        </div>
+        <h3 class="card-title">UI Framework Agnostic</h3>
+        <p class="card-description">Use your favorite frameworks like React, Vue, Svelte, and more, all in the same project.</p>
+      </div>
     </div>
-    <div class="glass-card metric-card">
-      <h2 class="metric-title">Active Uplinks</h2>
-      <p class="metric-value">42</p>
-    </div>
-  </div>
-  
-  <div class="glass-card transmissions-card">
-    <h2 class="card-title">Active Transmissions</h2>
-    <ul>
-      <li>[Nexus] :: Synthesizing cinematic landscape...</li>
-      <li>[Lab] :: Analyzing market trends for Q3...</li>
-      <li>[System] :: User 'julian' joined the Tribe.</li>
-    </ul>
-  </div>
+  </section>
 </Layout>
 
 <style>
-  .dashboard-title {
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .hero-title {
     font-family: var(--font-secondary);
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
-  .dashboard-subtitle {
+
+  .hero-subtitle {
     color: var(--color-text-secondary);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
   }
-  .grid-container {
+
+  .hero-cta {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .hero-cta:hover {
+    background-color: #A062F7;
+    box-shadow: 0 0 15px var(--color-accent-glow);
+  }
+
+  .features {
+    padding: 4rem 2rem;
+  }
+
+  .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .metric-card {
-    padding: 1.5rem;
+
+  .card {
+    text-align: center;
+    padding: 2.5rem;
   }
-  .metric-title {
-    font-family: var(--font-secondary);
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 0.5rem;
+
+  .card-icon {
+    font-size: 3rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
   }
-  .metric-value {
-    font-size: 2.5rem;
-    font-weight: 600;
-  }
-  .transmissions-card {
-    padding: 1.5rem;
-  }
+
   .card-title {
     font-family: var(--font-secondary);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  .transmissions-card ul {
-    list-style: none;
-  }
-  .transmissions-card li {
-    font-family: var(--font-secondary);
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+  }
+
+  .card-description {
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
   }
 </style>
