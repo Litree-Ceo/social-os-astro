@@ -1,6 +1,5 @@
 ---
-import Post from './Post.astro';
-import CreatePost from './CreatePost.astro';
+import InteractiveFeed from './InteractiveFeed.jsx';
 
 const posts = [
   {
@@ -24,16 +23,10 @@ const posts = [
     name: 'Lyra Nova',
     handle: 'novalyra',
     time: '5h',
-    content: 'The concept of a \'Social OS\' is fascinating. It\'s not just about sharing content, but about creating a personalized, interactive digital space.',
+    content: "The concept of a 'Social OS' is fascinating. It's not just about sharing content, but about creating a personalized, interactive digital space.",
     image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop'
   }
 ];
 ---
 
-<div class="feed-container max-w-2xl mx-auto py-8">
-  <CreatePost />
-  <h2 class="text-3xl font-bold mb-6 text-white pt-8">Pulse Stream</h2>
-  {
-    posts.map(post => <Post {...post} />)
-  }
-</div>
+<InteractiveFeed client:load initialPosts={posts} />
