@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from 'astro-icon';
+import DeployLog from '../components/DeployLog.jsx';
 ---
 
 <Layout>
@@ -17,6 +18,13 @@ import Icon from 'astro-icon';
       <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300">
         The creative core of the OS. Develop, test, and deploy decentralized applications and AI models with a powerful suite of tools.
       </p>
+      <button id="deploy-button" class="mt-8 px-6 py-2 bg-blue-600 text-white rounded-lg">Deploy</button>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div id="log-container" class="hidden">
+        <DeployLog client:load />
+      </div>
     </section>
 
     <!-- Tools Section -->
@@ -57,4 +65,10 @@ import Icon from 'astro-icon';
       </div>
     </section>
   </div>
+  <script>
+    document.getElementById('deploy-button').addEventListener('click', () => {
+      const logContainer = document.getElementById('log-container');
+      logContainer.classList.toggle('hidden');
+    });
+  </script>
 </Layout>
