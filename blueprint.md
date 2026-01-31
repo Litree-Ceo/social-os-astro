@@ -24,15 +24,16 @@ This section documents the visual and functional characteristics of the applicat
 
 ### Real-Time Network Data:
 *   **Firebase Integration:** The project has been initialized with Firebase, and the client-side Firebase configuration has been set up in `src/firebase/client.ts`.
+*   **Firestore Database:** A Cloud Firestore database has been set up to store network data.
+*   **API Route:** An API route at `src/pages/api/network-status.json.js` has been created to fetch the latest network status from Firestore.
+*   **Interactive Component:** A Preact component, `src/components/NetworkStatus.jsx`, has been created to display the network status in real-time.
+*   **Network Page Integration:** The `NetworkStatus` component has been integrated into the `network.astro` page to display the real-time data.
 
-## 3. Current Plan: Real-Time Network Data (In Progress)
+## 3. Current Plan: Interactive Studio Page
 
-My current task is to make the application more dynamic by adding a real-time data visualization to the 'Network' page.
+My current task is to make the "Studio" page more interactive by adding a simulated deployment log viewer.
 
 ### Plan:
 
-1.  **Initialize Firebase:** I will initialize Firebase in the project to enable backend services. (Completed)
-2.  **Set up Firestore:** I will set up a Cloud Firestore database to store the network data.
-3.  **Create an API Route:** I will create an API route in Astro to fetch the network data from Firestore.
-4.  **Create an Interactive Component:** I will create a new interactive component to display the network status in real-time.
-5.  **Update the Network Page:** I will integrate the new interactive component into the 'Network' page.
+1.  **Create an Interactive Log Component:** I will create a new interactive Preact component named `DeployLog.jsx` to display a stream of mock deployment logs.
+2.  **Update the Studio Page:** I will add a "Deploy" button to the `studio.astro` page and integrate the `DeployLog.jsx` component, making it appear when the button is clicked.
