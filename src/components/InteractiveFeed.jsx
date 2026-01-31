@@ -1,30 +1,34 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
+import { onAuthStateChanged } from 'firebase/auth';
+import { collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import Post from './Post.jsx';
+import Auth from './Auth.jsx';
 
-const CreatePost = ({ onPost }) => {
+const CreatePost = ({ user, onPost }) => {
   const [content, setContent] = useState('');
-  const [imageUrl, setImageUrl] = useState(''); // State for the image URL
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (content.trim() || imageUrl.trim()) {
-      onPost({ content, imageUrl }); // Pass an object with both content and imageUrl
+      onPost({ content, imageUrl });
       setContent('');
-      setImageUrl(''); // Reset the image URL field
+      setImageUrl('');
     }
   };
 
   return (
     <div class="create-post-card bg-gray-800 bg-opacity-60 backdrop-blur-lg border border-gray-700 rounded-lg p-5 mb-8 shadow-2xl transition-all duration-300 hover:border-purple-500">
       <div class="flex items-start">
-        <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="User Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-gray-600 shadow-md" />
+        <img src={user.photoURL} alt="User Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-gray-600 shadow-md" />
         <div class="w-full">
           <form onSubmit={handleSubmit}>
             <textarea 
               class="w-full bg-transparent text-white text-lg placeholder-gray-400 focus:outline-none resize-none" 
               rows="3" 
-              placeholder="What's pulsing on the network, @Larry?" 
+              placeholder={`What's pulsing on the network, @${user.displayName}?`} 
               value={content} 
               onInput={(e) => setContent(e.target.value)}
             ></textarea>
@@ -52,24 +56,43 @@ const CreatePost = ({ onPost }) => {
   );
 };
 
-const InteractiveFeed = ({ initialPosts }) => {
-  const [posts, setPosts] = useState(initialPosts);
+const InteractiveFeed = () => {
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
 
-  const handlePost = ({ content, imageUrl }) => {
-    const newPost = {
-      avatar: 'https://randomuser.me/api/portraits/men/86.jpg',
-      name: 'Larry',
-      handle: 'Larry',
-      time: 'Just now',
-      content: content,
-      image: imageUrl || null, // Use the imageUrl, or null if it's empty
-    };
-    setPosts([newPost, ...posts]);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const q = query(collection(db, 'posts'), orderBy('timestamp', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const postsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setPosts(postsData);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handlePost = async ({ content, imageUrl }) => {
+    if (user) {
+      await addDoc(collection(db, 'posts'), {
+        uid: user.uid,
+        name: user.displayName,
+        avatar: user.photoURL,
+        content,
+        imageUrl: imageUrl || null,
+        timestamp: serverTimestamp(),
+      });
+    }
   };
 
   return (
     <div class="feed-container max-w-2xl mx-auto py-8">
-      <CreatePost onPost={handlePost} />
+      <Auth user={user} />
+      {user && <CreatePost user={user} onPost={handlePost} />}
       <h2 class="text-3xl font-bold mb-6 text-white pt-8">Pulse Stream</h2>
       {posts.map(post => <Post {...post} />)}
     </div>
