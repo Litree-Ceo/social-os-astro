@@ -1,35 +1,38 @@
-# Project Blueprint
+# ChronoSync Application Blueprint
 
-## Overview
+## 1. Overview
 
-This project is a decentralized AI operating system for the new web, built with Astro.js and Firebase. It features a real-time interactive feed, user authentication, and a modern, visually appealing interface.
+ChronoSync is a web application designed to be a modern, intuitive, and visually engaging platform. The goal is to create a seamless user experience with a focus on performance and aesthetics, built with Astro.js and Firebase.
 
-## Design and Features
+## 2. Style, Design, and Features
 
-### Style and Design
+This section documents the visual and functional characteristics of the application as they are implemented.
 
-- **Layout:** A responsive grid-based layout with a main content area and a sidebar for additional information.
-- **Color Palette:** A dark-themed interface with vibrant gradients and highlights, creating a futuristic and energetic look.
-- **Typography:** A clean, modern font that is easy to read and emphasizes key information.
-- **Iconography:** A set of icons to enhance the user's understanding and navigation of the application.
+### Initial State:
+*   **Framework:** Astro.js
+*   **Styling:** Basic CSS with a "digital dust" background effect.
+*   **Layout:** A simple layout defined in `src/layouts/Layout.astro`.
+*   **Pages:** `index.astro`, `lab.astro`, `network.astro`, `studio.astro`.
+*   **Backend:** Firebase configured for hosting and Firestore.
 
-### Implemented Features
+### Visual and Structural Enhancement:
+*   **Modern Layout:** The core layout in `src/layouts/Layout.astro` has been updated with a sophisticated dark theme, a vibrant color palette, and improved typography.
+*   **Reusable Header:** A new `Header.astro` component in `src/components/` provides consistent navigation across all pages.
+*   **Redesigned Pages:** The `index.astro`, `studio.astro`, `lab.astro`, and `network.astro` pages have been redesigned with a modern aesthetic, including hero sections, feature cards, and icons.
+*   **Tailwind CSS:** The project now uses Tailwind CSS for styling, with a custom configuration in `tailwind.config.mjs`.
+*   **Global Styles:** The `src/styles/global.css` file has been simplified to rely on Tailwind CSS.
 
-- **User Authentication:** Users can sign in with their Google account to post on the interactive feed.
-- **Real-Time Feed:** A real-time feed that displays posts from all users, updating automatically as new posts are created.
-- **Post Creation:** Authenticated users can create new posts with text and optional images.
+### Real-Time Network Data:
+*   **Firebase Integration:** The project has been initialized with Firebase, and the client-side Firebase configuration has been set up in `src/firebase/client.ts`.
 
-## Current Plan
+## 3. Current Plan: Real-Time Network Data (In Progress)
 
-### Task: Convert Preact Components to Astro Components
+My current task is to make the application more dynamic by adding a real-time data visualization to the 'Network' page.
 
-- **Objective:** To migrate the application from Preact to Astro, leveraging Astro's Islands Architecture for improved performance and a better developer experience.
-- **Steps:**
-  1. **Convert `AgentConsole.jsx` to `AgentConsole.astro`:** The typewriter effect will be replaced with static text, and the button's functionality will be preserved using a client-side `<script>` tag.
-  2. **Convert `Auth.jsx` to `Auth.astro`:** The authentication logic will be moved into a `<script>` tag, and the page will reload on sign-in/sign-out to reflect the updated authentication state.
-  3. **Convert `InteractiveFeed.jsx` to Astro Components:** The component will be broken down into smaller, more manageable Astro components:
-     - `CreatePost.astro`: A form for creating new posts with client-side interactivity.
-     - `Post.astro`: A component for displaying individual posts with client-side time formatting.
-     - `InteractiveFeed.astro`: The main component that orchestrates the feed, fetches and displays posts from Firestore, and handles user authentication.
-  4. **Update `src/pages/index.astro`:** The main page will be updated to use the new Astro components.
-  5. **Create `blueprint.md`:** A blueprint file will be created to document the project's structure, design, and features.
+### Plan:
+
+1.  **Initialize Firebase:** I will initialize Firebase in the project to enable backend services. (Completed)
+2.  **Set up Firestore:** I will set up a Cloud Firestore database to store the network data.
+3.  **Create an API Route:** I will create an API route in Astro to fetch the network data from Firestore.
+4.  **Create an Interactive Component:** I will create a new interactive component to display the network status in real-time.
+5.  **Update the Network Page:** I will integrate the new interactive component into the 'Network' page.

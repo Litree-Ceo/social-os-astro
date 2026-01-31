@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import InteractiveFeed from '../components/InteractiveFeed.astro';
 import Icon from 'astro-icon';
 ---
 
@@ -8,55 +7,63 @@ import Icon from 'astro-icon';
   <div class="relative z-10">
     <!-- Hero Section -->
     <section class="text-center py-20 px-4 sm:px-6 lg:px-8">
-        <div class="absolute inset-0 -z-10 overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl opacity-50"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/4 -translate-y-1/4 w-72 h-72 bg-pink-600/30 rounded-full blur-3xl opacity-40"></div>
-        </div>
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/4 -translate-y-1/4 w-72 h-72 bg-pink-600/30 rounded-full blur-3xl opacity-40"></div>
+      </div>
       <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-4 font-display">
-        Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">LitLabs OS</span>
+        Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">ChronoSync</span>
       </h1>
       <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300">
         The decentralized AI operating system for the new web. Experience the pulse of a connected, intelligent future.
       </p>
+      <button id="seed-button" class="mt-8 px-6 py-2 bg-purple-600 text-white rounded-lg">Seed Database</button>
     </section>
 
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Main Column: Pulse Stream -->
-      <main class="col-span-1 lg:col-span-2">
-        <InteractiveFeed />
-      </main>
-
-      <!-- Right Column: Intelligence Hub -->
-      <aside class="col-span-1 hidden lg:block">
-        <div class="sticky top-20 space-y-8">
-          <div class="intelligence-hub bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-purple-500/80">
-            <h3 class="text-xl font-bold text-white mb-4 flex items-center">
-                <Icon name="mdi:brain-outline" class="w-6 h-6 mr-3 text-purple-400" />
-                Intelligence Hub
-            </h3>
-            <p class="text-gray-400 text-sm mb-4">
-              Your AI command center. Autonomous agents, real-time analytics, and predictive insights will be managed from this nexus.
-            </p>
-            <button class="w-full bg-purple-600/50 text-white font-semibold py-2 px-4 rounded-lg border border-purple-500/80 hover:bg-purple-600/80 transition-colors duration-300 cursor-not-allowed" disabled>
-              Activate Agents (Soon)
-            </button>
+    <!-- Features Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature Card 1 -->
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-purple-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-purple-600/50 mb-4">
+            <Icon name="mdi:brain-outline" class="w-6 h-6 text-purple-300" />
           </div>
-
-          <div class="system-status bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-cyan-500/80">
-            <h3 class="text-xl font-bold text-white mb-4 flex items-center">
-                <Icon name="mdi:server-network" class="w-6 h-6 mr-3 text-cyan-400" />
-                System Status
-            </h3>
-            <ul class="space-y-3 text-sm">
-                <li class="flex items-center text-gray-300"><Icon name="mdi:check-circle" class="w-5 h-5 mr-2 text-green-500"/>Auth Layer: <span class="ml-auto font-mono">Operational</span></li>
-                <li class="flex items-center text-gray-300"><Icon name="mdi:check-circle" class="w-5 h-5 mr-2 text-green-500"/>Data Stream: <span class="ml-auto font-mono">Nominal</span></li>
-                <li class="flex items-center text-gray-300"><Icon name="mdi:check-circle" class="w-5 h-5 mr-2 text-green-500"/>AI Core: <span class="ml-auto font-mono">Standby</span></li>
-            </ul>
-          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Intelligence Hub</h3>
+          <p class="text-gray-400 text-sm">
+            Your AI command center. Autonomous agents, real-time analytics, and predictive insights will be managed from this nexus.
+          </p>
         </div>
-      </aside>
-    </div>
+
+        <!-- Feature Card 2 -->
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-cyan-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-600/50 mb-4">
+            <Icon name="mdi:server-network" class="w-6 h-6 text-cyan-300" />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">System Status</h3>
+          <p class="text-gray-400 text-sm">
+            Monitor the health and performance of your decentralized network in real-time. Ensure all systems are operational.
+          </p>
+        </div>
+
+        <!-- Feature Card 3 -->
+        <div class="bg-gray-800/60 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6 shadow-2xl transition-all duration-300 hover:border-pink-500/80">
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-pink-600/50 mb-4">
+            <Icon name="mdi:lightbulb-on-outline" class="w-6 h-6 text-pink-300" />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">LitLabs Studio</h3>
+          <p class="text-gray-400 text-sm">
+            The creative core of the OS. Develop, test, and deploy decentralized applications and AI models with a powerful suite of tools.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
+  <script>
+    document.getElementById('seed-button').addEventListener('click', () => {
+      fetch('/api/seed')
+        .then(response => response.json())
+        .then(data => console.log('Seeded database:', data))
+        .catch(error => console.error('Error seeding database:', error));
+    });
+  </script>
 </Layout>

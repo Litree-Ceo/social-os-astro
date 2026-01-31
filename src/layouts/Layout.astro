@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '../styles/tailwind.css';
 import AgentConsole from '../components/AgentConsole.astro';
 import ChronoSync from '../components/ChronoSync.astro';
+import Header from '../components/Header.astro';
 ---
 
 <html lang="en">
@@ -22,23 +23,7 @@ import ChronoSync from '../components/ChronoSync.astro';
     <div id="digital-dust" class="digital-dust"></div>
     <div class="app-layout">
       <ChronoSync />
-      <header class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-30 backdrop-blur-lg border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-              <a href="/" class="text-2xl font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">LitLabs</a>
-            </div>
-            <nav class="hidden md:block">
-              <ul class="flex items-center space-x-4">
-                <li><a href="/" class="text-gray-300 hover:text-white transition-colors duration-200">Dashboard</a></li>
-                <li><a href="/studio" class="text-gray-300 hover:text-white transition-colors duration-200">Studio</a></li>
-                <li><a href="/lab" class="text-gray-300 hover:text-white transition-colors duration-200">Lab</a></li>
-                <li><a href="/network" class="text-gray-300 hover:text-white transition-colors duration-200">Network</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main class="pt-16 relative z-10">
         <slot />
       </main>
@@ -72,7 +57,7 @@ import ChronoSync from '../components/ChronoSync.astro';
         height: 200%;
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39tbW1dXV1ra2uEhISBgYGtra1bwKO+AAAAC3RSTlMAYGF/gIBAgIDAwMDBV1p2AAAA/klEQVR42pWVuQ7DIBAFxS2f5J917/++9wXh6g5eFPLp2mr0S43s/GgMVu//WHQsY2vVsl3bf6y6HrlP++w3G3vAlew4Q8gV//dJ/u9yR9XZt3AY/20T48h/32n2S/mI/2G6h/hJ/v0c23sK53gB/+4U/7wDo/2G+j9BPR+MhJ/E78G/8D/P4DkP8L+D4i/wL+H/l/4D/T/3An+A/z/eCfx//AP8G/u8A/wn/H/gP9F/u/wL/F/6/8D/h/9f+D/x//v/B/4f/H/h/9f/h/8f+H/x/7f/h//P/B/4f/H/g/8f/B/4f/B/+/+H/w//3/w//H/h/8P/x/4f/D/8f+H/w//H/h/+//B/4f+P/AF4QPLpL0zS0AAAAASUVORK5CYII=');
         z-index: 2;
-        opacity: 0.03;
+        opacity: 0.02;
         will-change: transform;
         animation: noise-flicker 20s linear infinite;
       }
