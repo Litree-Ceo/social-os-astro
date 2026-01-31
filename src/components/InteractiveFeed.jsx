@@ -59,6 +59,7 @@ const CreatePost = ({ user, onPost }) => {
 const InteractiveFeed = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -72,6 +73,7 @@ const InteractiveFeed = () => {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const postsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setPosts(postsData);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -81,6 +83,7 @@ const InteractiveFeed = () => {
       await addDoc(collection(db, 'posts'), {
         uid: user.uid,
         name: user.displayName,
+        handle: user.email.split('@')[0],
         avatar: user.photoURL,
         content,
         imageUrl: imageUrl || null,
@@ -94,6 +97,8 @@ const InteractiveFeed = () => {
       <Auth user={user} />
       {user && <CreatePost user={user} onPost={handlePost} />}
       <h2 class="text-3xl font-bold mb-6 text-white pt-8">Pulse Stream</h2>
+      {loading && <p class="text-white">Loading posts...</p>}
+      {!loading && posts.length === 0 && <p class="text-white">No posts yet. Be the first!</p>}
       {posts.map(post => <Post {...post} />)}
     </div>
   );
