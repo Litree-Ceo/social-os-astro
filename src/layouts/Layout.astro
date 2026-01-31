@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import AgentConsole from '../components/AgentConsole.astro';
+import AgentConsole from '../components/AgentConsole.jsx';
 ---
 
 <html lang="en">
@@ -35,7 +35,7 @@ import AgentConsole from '../components/AgentConsole.astro';
         <slot />
       </main>
       <div class="agent-console-container">
-          <AgentConsole client:idle />
+          <AgentConsole client:load />
       </div>
     </div>
     <style>
