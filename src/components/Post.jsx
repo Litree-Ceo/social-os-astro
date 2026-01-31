@@ -1,10 +1,6 @@
 import { h } from 'preact';
 
-// We can't use the astro-icon component directly in JSX, 
-// so we'll just use simple SVG paths or text for now.
-
 const Icon = ({ name }) => {
-    // In a real scenario, you'd have an SVG sprite or a library for icons.
     const icons = {
         'mdi:dots-horizontal': '...',
         'mdi:comment-outline': 'C',
@@ -15,7 +11,22 @@ const Icon = ({ name }) => {
     return <span class="icon">{icons[name] || ''}</span>
 }
 
-const Post = ({ avatar, name, handle, time, content, image }) => {
+// A simple function to format the timestamp
+const formatTime = (timestamp) => {
+  if (!timestamp) return '';
+  const now = new Date();
+  const postDate = timestamp.toDate(); // Convert Firestore timestamp to JS Date
+  const diffInSeconds = Math.floor((now - postDate) / 1000);
+
+  if (diffInSeconds < 60) return 'Just now';
+  if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m`;
+  if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h`;
+  return postDate.toLocaleDateString();
+};
+
+const Post = ({ avatar, name, handle, timestamp, content, image }) => {
+  const time = formatTime(timestamp);
+
   return (
     <div class="post-card bg-gray-800 bg-opacity-40 backdrop-blur-md border border-gray-700 rounded-lg p-6 mb-8 shadow-lg transition-all duration-300 hover:border-cyan-400 hover:shadow-cyan-400/20">
       <div class="flex items-center mb-4">
