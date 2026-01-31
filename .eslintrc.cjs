@@ -9,6 +9,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:astro/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:react/recommended',
     'plugin:prettier/recommended',
   ],
   parserOptions: {
@@ -17,6 +18,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'react/react-in-jsx-scope': 'off',
   },
   overrides: [
     {
@@ -28,9 +30,14 @@ module.exports = {
       },
     },
     {
-        files: ['*.jsx'],
-        plugins: ['preact'],
-        extends: ['preact', 'plugin:prettier/recommended'],
-    }
+      files: ['*.jsx'],
+      extends: ['plugin:react/recommended'],
+      settings: {
+        react: {
+          pragma: 'h',
+          version: 'detect',
+        },
+      },
+    },
   ],
 }
