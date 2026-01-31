@@ -1,16 +1,32 @@
 # LitreeLabStudio - Project Blueprint
 
-## 🚀 Overview: The "Tri-Core" Social Media OS
+## 🚀 Overview: The Fluid Spatial HUD
 
-LitreeLabStudio is a next-generation web application that functions as a "Social Media Operating System." It merges the community features of Facebook, the deep customization of MySpace, and the immersive media experience of Kodi into a single, seamless platform. It's built on a modern, full-stack architecture using Astro for the frontend shell and React for interactive UI components, all powered by a Firebase backend.
+LitreeLabStudio is a next-generation web application that functions as a "Social Media Operating System." It merges the community features of Facebook, the deep customization of MySpace, and the immersive media experience of Kodi into a single, seamless platform. The architecture is shifting from a static, container-based layout to a **Fluid Spatial HUD**, creating a more interactive and immersive user experience with a sense of depth and responsiveness.
+
+---
+
+## 🌊 The Fluid Spatial HUD: Core Concepts
+
+To eliminate the "canned" feeling, we are implementing a UI based on depth, focus, and fluid motion.
+
+### 1. Fluid UI & Depth-Based Layering
+*   **Mouse-Reactive Parallax:** The background image and a new "Digital Dust" (noise) layer will shift subtly based on the cursor's position, creating a convincing 3D depth effect.
+*   **Dynamic Focal Length:** When a primary UI element like a "Cinema Blade" is active, the application will dynamically apply a `backdrop-filter: blur()` to all other elements, creating a "theater" experience that focuses the user's attention.
+
+### 2. The "Live Terminal" & OS-Level Effects
+*   **Log Streamer:** Terminal output will "type" out character-by-character, giving the feel of a high-tech, live operating system.
+*   **Ghost Mode FX:** Activating "Ghost Mode" will trigger a "glitch" transition effect across the entire UI, enhancing the feeling of a system-level state change.
+
+### 3. Interaction Polish & Micro-Interactions
+*   **Blade Hover Tilt:** Using CSS `transform: perspective()`, interactive cards ("Blades") will tilt towards the mouse as the user hovers, enhancing the sense of a three-dimensional space.
+*   **Social Pulse:** Social cards containing live media links (e.g., videos, music) will emit a subtle "glow pulse" to indicate interactive content.
 
 ---
 
 ## 🏗️ Core Architecture
 
 ### 1. The "Tri-Core" Engine (View States)
-
-The application is a Single Page Application (SPA) with three distinct, user-toggleable "View States":
 
 | Mode         | Inspiration | Primary Tech             | Core Function                                           |
 |--------------|-------------|--------------------------|---------------------------------------------------------|
@@ -24,36 +40,26 @@ The application is a Single Page Application (SPA) with three distinct, user-tog
 *   **Database (Firestore):**
     *   `users` collection: Stores `uid`, `displayName`, `profileImage`, and the `userConfig` object.
     *   `userConfig` object: Contains `themeCSS` (a string of raw CSS), `currentMood`, `nowPlayingURL`, and a `top8Friends` array.
-    *   `media` collection: Caches metadata for movies/music, synced from external APIs (e.g., TMDB, Spotify).
+    *   `media` collection: Caches metadata for movies/music.
 
 ### 3. Frontend Technology
 
-*   **Shell & Routing:** **Astro** provides the file-based routing, static site generation for landing pages, and the overall project structure.
-*   **Interactive UI:** **React** is used to build the complex, stateful components that make up the "Tri-Core" engine (e.g., the feed, the profile editor, the media player). These are rendered as interactive "islands" within the Astro framework.
-*   **Styling:** **Tailwind CSS** provides the utility-first foundation for a clean, modern, and responsive design. User-generated themes override these base styles.
+*   **Shell & Routing:** **Astro** for file-based routing and static site generation.
+*   **Interactive UI:** **React** for complex, stateful components ("islands").
+*   **Styling:** **Tailwind CSS** for the utility-first foundation.
 
 ---
 
-## ✨ "Badass" Features & Future Roadmap
+## ✅ Current Plan: Implementing the Fluid Spatial HUD
 
-*   **Vibe-Sync Media Player:** The site's background animations and UI elements will pulse to the BPM of the user's profile song, analyzed in real-time with the Web Audio API.
-*   **AI-Powered "Skin-Shifting":** A text-to-theme engine powered by Gemini. Users can type a descriptive prompt (e.g., "Make my profile look like a neon-rainy night in Tokyo") to generate and apply custom CSS instantly.
-*   **"The Portal" Watch Party:** An overlay in "Cinema Mode" that shows what friends are watching, allowing users to "jump in" to a synchronized media stream.
-*   **Digital "Sticker" Economy:** Users can place interactive 3D widgets (built with Three.js or Lottie) on their profiles that react to mouse movements.
-*   **"Ghost Mode" Privacy:** A single-click "Burner" toggle that instantly masks a user's profile, anonymizes their activity, and applies a generic "Under Construction" theme.
+1.  **Implement Fluid UI & Depth:**
+    *   **Mouse-Reactive Parallax:** Modify the main layout to include a "Digital Dust" noise layer and add the JavaScript for the parallax effect.
+    *   **Blade Hover Tilt:** Apply a 3D tilt effect to the feature cards on the homepage.
 
----
+2.  **Enhance the "Live Terminal":**
+    *   **Log Streamer Effect:** Update the `AgentConsole.jsx` component to make terminal output appear as if it's being typed character-by-character.
 
-## ✅ Current Plan & Immediate Tasks
-
-1.  **Stabilize the Foundation:**
-    *   **Fix broken dependencies:** Correctly install and configure `tailwindcss` and `astro-icon` to resolve the current site errors.
-    *   **Verify render:** Ensure the basic Astro layout and homepage render correctly with the intended styles.
-
-2.  **Implement Core Architecture:**
-    *   **Integrate Firebase:** Set up the Firebase SDK and create the connection to Firestore and Auth.
-    *   **Build the "Tri-Core" Switcher:** Develop the main UI control that allows users to toggle between The Grid, The Canvas, and The Cinema views.
-    *   **Develop the first Core Component:** Begin with "The Canvas" (MySpace mode), creating the React component for the user profile page.
-
-3.  **Begin Feature Implementation:**
-    *   **Custom CSS Injector:** Implement the logic to pull the `themeCSS` string from Firestore and apply it to the user's profile page.
+3.  **Future HUD Implementation:**
+    *   **Dynamic Focal Length:** Implement the `backdrop-filter: blur()` effect for the "Cinema Blades".
+    *   **Ghost Mode FX:** Design and implement the "glitch" transition for Ghost Mode.
+    *   **Social Pulse:** Add the "glow pulse" to social cards with media links.

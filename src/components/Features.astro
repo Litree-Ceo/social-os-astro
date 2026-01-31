@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+<section class="py-20 px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" style="perspective: 1000px;">
+      <div class="card bg-gray-800 bg-opacity-50 rounded-lg p-8 text-center transition-transform duration-300 shadow-lg">
+        <div class="text-purple-400 text-5xl mb-6 mx-auto">
+          <Icon name="mdi:rocket-launch" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Blazing Fast</h3>
+        <p class="text-gray-400">Astro pages are pre-rendered to static HTML, resulting in the fastest possible load times.</p>
+      </div>
+      <div class="card bg-gray-800 bg-opacity-50 rounded-lg p-8 text-center transition-transform duration-300 shadow-lg">
+        <div class="text-purple-400 text-5xl mb-6 mx-auto">
+          <Icon name="mdi:island" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Islands Architecture</h3>
+        <p class="text-gray-400">Ship zero JavaScript by default. Opt-in to client-side interactivity only when you need it.</p>
+      </div>
+      <div class="card bg-gray-800 bg-opacity-50 rounded-lg p-8 text-center transition-transform duration-300 shadow-lg">
+        <div class="text-purple-400 text-5xl mb-6 mx-auto">
+          <Icon name="mdi:puzzle" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2">UI Framework Agnostic</h3>
+        <p class="text-gray-400">Use your favorite frameworks like React, Vue, Svelte, and more, all in the same project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const { left, top, width, height } = card.getBoundingClientRect();
+      const x = (e.clientX - left - width / 2) / 25;
+      const y = (e.clientY - top - height / 2) / 25;
+      card.style.transform = `rotateY(${-x}deg) rotateX(${y}deg) scale(1.05)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateY(0) rotateX(0) scale(1)';
+    });
+  });
+</script>

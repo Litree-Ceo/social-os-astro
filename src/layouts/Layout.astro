@@ -15,26 +15,32 @@ import AgentConsole from '../components/AgentConsole.jsx';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body class="bg-gray-900 text-white font-sans overflow-hidden">
+    <div id="background-layer" class="background-layer"></div>
+    <div id="digital-dust" class="digital-dust"></div>
     <div class="app-layout">
-      <header class="header">
-        <div class="logo">
-          <a href="/">LitLabs</a>
+      <header class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-30 backdrop-blur-lg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+              <a href="/" class="text-2xl font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">LitLabs</a>
+            </div>
+            <nav class="hidden md:block">
+              <ul class="flex items-center space-x-4">
+                <li><a href="/" class="text-gray-300 hover:text-white transition-colors duration-200">Dashboard</a></li>
+                <li><a href="/studio" class="text-gray-300 hover:text-white transition-colors duration-200">Studio</a></li>
+                <li><a href="/lab" class="text-gray-300 hover:text-white transition-colors duration-200">Lab</a></li>
+                <li><a href="/network" class="text-gray-300 hover:text-white transition-colors duration-200">Network</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <nav class="navigation">
-          <ul>
-            <li><a href="/">Dashboard</a></li>
-            <li><a href="/studio">Studio</a></li>
-            <li><a href="/lab">Lab</a></li>
-            <li><a href="/network">Network</a></li>
-          </ul>
-        </nav>
       </header>
-      <main class="main-content">
+      <main class="pt-16 relative z-10">
         <slot />
       </main>
-      <footer class="footer">
-        <p>&copy; {new Date().getFullYear()} LitLabs. All rights reserved.</p>
+      <footer class="bg-transparent text-center py-6 px-4 sm:px-6 lg:px-8 relative z-10">
+          <p class="text-gray-500">&copy; {new Date().getFullYear()} LitLabs. All rights reserved.</p>
       </footer>
       <div class="agent-console-container">
           <AgentConsole client:load />
@@ -42,83 +48,38 @@ import AgentConsole from '../components/AgentConsole.jsx';
     </div>
     <style>
       :root {
-        --color-primary: #1a1a1a;
-        --color-secondary: #2a2a2a;
-        --color-accent: #0070f3;
-        --color-text-primary: #ffffff;
-        --color-text-secondary: #a0a0a0;
-        --color-border: #333333;
         --font-primary: 'Inter', sans-serif;
         --font-secondary: 'Space Grotesk', sans-serif;
       }
 
-      body {
-        background-color: var(--color-primary);
-        color: var(--color-text-primary);
-        font-family: var(--font-primary);
-        margin: 0;
+      .background-layer {
+        position: fixed;
+        top: -50px; left: -50px; right: -50px; bottom: -50px;
+        background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        transition: transform 0.1s linear;
       }
 
+      .digital-dust {
+        position: fixed;
+        top: -50px; left: -50px; right: -50px; bottom: -50px;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39tbW1dXV1ra2uEhISBgYGtra1bwKO+AAAAC3RSTlMAYGF/gIBAgIDAwMDBV1p2AAAA/klEQVR42pWVuQ7DIBAFxS2f5J917/++9wXh6g5eFPLp2mr0S43s/GgMVu//WHQsY2vVsl3bf6y6HrlP++w3G3vAlew4Q8gV//dJ/u9yR9XZt3AY/20T48h/32n2S/mI/2G6h/hJ/v0c23sK53gB/+4U/7wDo/2G+j9BPR+MhJ/E78G/8D/P4DkP8L+D4i/wL+H/l/4D/T/3An+A/z/eCfx//AP8G/u8A/wn/H/gP9F/u/wL/F/6/8D/h/9f+D/x//v/B/4f/H/h/9f/h/8f+H/x/7f/h//P/B/4f/H/g/8f/B/4f/B/+//B/4f/B/+/+H/w//3/w//H/h/8P/x/4f/D/8f+H/w//H/h/+//B/4f/B/+/+H/w//3/w//H/h/8P/x/4f/D/8f+H/w//H/h/+//B/4f/B/+/+H/w//3/w//H/h/8P/x/4f/D/8f+H/w//H/h/+//B/4f+P/AF4QPLpL0zS0AAAAASUVORK5CYII=');
+        z-index: 2;
+        opacity: 0.05;
+        transition: transform 0.1s linear;
+      }
+      
       .app-layout {
+        position: relative;
+        z-index: 3;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-        border-bottom: 1px solid var(--color-border);
-        background-color: rgba(26, 26, 26, 0.8);
-        backdrop-filter: blur(10px);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-
-      .logo a {
-        font-family: var(--font-secondary);
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--color-text-primary);
-        text-decoration: none;
-      }
-
-      .navigation ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-      }
-
-      .navigation li {
-        margin-left: 2rem;
-      }
-
-      .navigation a {
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-
-      .navigation a:hover,
-      .navigation a.is-active {
-        color: var(--color-text-primary);
-      }
-
-      .main-content {
-        flex: 1;
-        padding: 2rem;
-      }
-
-      .footer {
-        padding: 1rem 2rem;
-        border-top: 1px solid var(--color-border);
-        text-align: center;
-        font-size: 0.875rem;
-        color: var(--color-text-secondary);
+        background: linear-gradient(180deg, rgba(18, 18, 20, 0.8) 0%, rgba(18, 18, 20, 0.95) 100%);
+        overflow-y: auto;
+        height: 100vh;
       }
 
       .agent-console-container {
@@ -127,22 +88,22 @@ import AgentConsole from '../components/AgentConsole.jsx';
         right: 1rem;
         z-index: 1000;
       }
-
-      @media (max-width: 768px) {
-        .header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .navigation {
-          margin-top: 1rem;
-        }
-
-        .navigation li {
-          margin-left: 0;
-          margin-right: 1.5rem;
-        }
-      }
     </style>
+
+    <script>
+      document.addEventListener('mousemove', (e) => {
+        const bg = document.getElementById('background-layer');
+        const dust = document.getElementById('digital-dust');
+        const x = (e.clientX / window.innerWidth) - 0.5;
+        const y = (e.clientY / window.innerHeight) - 0.5;
+
+        if (bg) {
+          bg.style.transform = `translateX(${-x * 20}px) translateY(${-y * 20}px)`;
+        }
+        if (dust) {
+          dust.style.transform = `translateX(${-x * 40}px) translateY(${-y * 40}px)`;
+        }
+      });
+    </script>
   </body>
 </html>
