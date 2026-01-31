@@ -6,12 +6,12 @@ const { user } = Astro.props;
   <div class="flex items-start">
     <img src={user.photoURL} alt="User Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-gray-600 shadow-md" />
     <div class="w-full">
-      <form id="create-post-form">
+      <form id="create-post-form" data-user={JSON.stringify(user)}>
         <textarea 
           id="post-content" 
           class="w-full bg-transparent text-white text-lg placeholder-gray-400 focus:outline-none resize-none" 
           rows="3" 
-          placeholder={`What's pulsing on the network, @${user.displayName}?`}
+          placeholder={`What\'s pulsing on the network, @${user.displayName}?`}
         ></textarea>
         
         <input 
@@ -42,20 +42,25 @@ const { user } = Astro.props;
     e.preventDefault();
     const content = document.getElementById('post-content').value;
     const imageUrl = document.getElementById('post-image-url').value;
-    const user = JSON.parse(e.target.dataset.user);
+    const user = JSON.parse(e.currentTarget.dataset.user);
 
     if (content.trim() || imageUrl.trim()) {
-      await addDoc(collection(db, 'posts'), {
-        uid: user.uid,
-        name: user.displayName,
-        handle: user.email.split('@')[0],
-        avatar: user.photoURL,
-        content,
-        imageUrl: imageUrl || null,
-        timestamp: serverTimestamp(),
-      });
-      document.getElementById('post-content').value = '';
-      document.getElementById('post-image-url').value = '';
+      try {
+        await addDoc(collection(db, 'posts'), {
+          uid: user.uid,
+          name: user.displayName,
+          handle: user.email.split('@')[0],
+          avatar: user.photoURL,
+          content,
+          imageUrl: imageUrl || null,
+          timestamp: serverTimestamp(),
+        });
+        document.getElementById('post-content').value = '';
+        document.getElementById('post-image-url').value = '';
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        // Optionally, display an error message to the user
+      }
     }
   });
 </script>

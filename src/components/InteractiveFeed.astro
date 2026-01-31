@@ -1,84 +1,83 @@
 ---
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
-import { auth, db } from "../firebase";
 import Post from "./Post.astro";
 import Auth from "./Auth.astro";
 import CreatePost from "./CreatePost.astro";
-
-let user = null;
-
-const authInstance = getAuth();
-
-// This is a placeholder for the user object. 
-// In a real app, you would fetch this from a database.
-onAuthStateChanged(authInstance, (u) => {
-  user = u;
-});
 ---
 
 <div class="feed-container max-w-2xl mx-auto py-8">
-  <Auth user={user} />
-  {user && <CreatePost user={user} />}
+  <div id="auth-container"></div>
+  <div id="create-post-container"></div>
   <h2 class="text-3xl font-bold mb-6 text-white pt-8">Pulse Stream</h2>
   <div id="posts-container"></div>
 </div>
 
 <script>
+  import { getAuth, onAuthStateChanged } from "firebase/auth";
   import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
-  import { db } from "../firebase";
-  import Post from "./Post.astro";
+  import { auth, db } from "../firebase";
+  import Auth from "./Auth.astro";
+  import CreatePost from "./CreatePost.astro";
 
+  const authContainer = document.getElementById('auth-container');
+  const createPostContainer = document.getElementById('create-post-container');
   const postsContainer = document.getElementById('posts-container');
-  postsContainer.innerHTML = '<p class="text-white">Loading posts...</p>';
 
+  const authInstance = getAuth();
+
+  onAuthStateChanged(authInstance, (user) => {
+    // Render Auth component
+    const authWrapper = document.createElement('div');
+    authWrapper.innerHTML = `<Auth user={${JSON.stringify(user)}} />`;
+    authContainer.innerHTML = '';
+    authContainer.appendChild(authWrapper);
+
+    // Render CreatePost component if user is logged in
+    if (user) {
+      const createPostWrapper = document.createElement('div');
+      createPostWrapper.innerHTML = `<CreatePost user={${JSON.stringify(user)}} />`;
+      createPostContainer.innerHTML = '';
+      createPostContainer.appendChild(createPostWrapper);
+    } else {
+      createPostContainer.innerHTML = '';
+    }
+  });
+
+  // Render posts
+  postsContainer.innerHTML = '<p class="text-white">Loading posts...</p>';
   const q = query(collection(db, 'posts'), orderBy('timestamp', 'desc'));
   onSnapshot(q, (snapshot) => {
     const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     postsContainer.innerHTML = '';
     if (posts.length === 0) {
       postsContainer.innerHTML = '<p class="text-white">No posts yet. Be the first!</p>';
-    }
-    posts.forEach(post => {
-      const postElement = document.createElement('div');
-      // This is not the ideal way to render components in Astro,
-      // but it's a workaround for this specific real-time use case.
-      // A better approach would be to use a framework like Preact or React for the feed.
-      postElement.innerHTML = `
-        <div class="post-card bg-gray-800 bg-opacity-40 backdrop-blur-md border border-gray-700 rounded-lg p-6 mb-8 shadow-lg transition-all duration-300 hover:border-cyan-400 hover:shadow-cyan-400/20">
-          <div class="flex items-center mb-4">
-            <img src="${post.avatar}" alt="${post.name}'s avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-gray-600" />
-            <div class="flex-grow">
-              <p class="font-bold text-white">${post.name}</p>
-              <p class="text-sm text-gray-400">@${post.handle} &middot; <span class="timestamp" data-timestamp="${post.timestamp?.toDate()}">${post.timestamp?.toDate().toLocaleDateString()}</span></p>
+    } else {
+      posts.forEach(post => {
+        const postElement = document.createElement('div');
+        // This is a workaround to render Astro components in a client-side script
+        postElement.innerHTML = `
+          <div class="post-card bg-gray-800 bg-opacity-40 backdrop-blur-md border border-gray-700 rounded-lg p-6 mb-8 shadow-lg transition-all duration-300 hover:border-cyan-400 hover:shadow-cyan-400/20">
+            <div class="flex items-center mb-4">
+              <img src="${post.avatar}" alt="${post.name}'s avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-gray-600" />
+              <div class="flex-grow">
+                <p class="font-bold text-white">${post.name}</p>
+                <p class="text-sm text-gray-400">@${post.handle} &middot; <span class="timestamp" data-timestamp="${post.timestamp?.toDate()}">${post.timestamp?.toDate().toLocaleDateString()}</span></p>
+              </div>
+              <button class="text-gray-500 hover:text-white">
+                <span>...</span>
+              </button>
             </div>
-            <button class="text-gray-500 hover:text-white">
-              <span>...</span>
-            </button>
+            <p class="text-gray-300 mb-4">${post.content}</p>
+            ${post.imageUrl ? `<img src="${post.imageUrl}" alt="Post image" class="rounded-lg w-full mb-4 border border-gray-700"/>` : ''}
+            <div class="flex justify-between text-gray-500">
+              <button class="flex items-center space-x-2 hover:text-cyan-400"><span>C</span><span>12</span></button>
+              <button class="flex items-center space-x-2 hover:text-green-400"><span>S</span><span>8</span></button>
+              <button class="flex items-center space-x-2 hover:text-pink-400"><span>H</span><span>42</span></button>
+              <button class="flex items-center space-x-2 hover:text-purple-400"><span>B</span><span>1.2k</span></button>
+            </div>
           </div>
-          <p class="text-gray-300 mb-4">${post.content}</p>
-          ${post.imageUrl ? `<img src="${post.imageUrl}" alt="Post image" class="rounded-lg w-full mb-4 border border-gray-700"/>` : ''}
-          <div class="flex justify-between text-gray-500">
-            <button class="flex items-center space-x-2 hover:text-cyan-400">
-              <span>C</span>
-              <span>12</span>
-            </button>
-            <button class="flex items-center space-x-2 hover:text-green-400">
-              <span>S</span>
-              <span>8</span>
-            </button>
-            <button class="flex items-center space-x-2 hover:text-pink-400">
-              <span>H</span>
-              <span>42</span>
-            </button>
-            <button class="flex items-center space-x-2 hover:text-purple-400">
-              <span>B</span>
-              <span>1.2k</span>
-            </button>
-          </div>
-        </div>
-      `;
-      postsContainer.appendChild(postElement);
-    });
+        `;
+        postsContainer.appendChild(postElement);
+      });
+    }
   });
 </script>
