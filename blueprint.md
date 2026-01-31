@@ -1,52 +1,36 @@
+# LitLabs OS - Project Blueprint
 
-# Project Blueprint
+## 1. Overview
 
-## Overview
+LitLabs OS is a decentralized, AI-powered operating system for the new web, designed to provide a seamless and intuitive user experience. It features a real-time social feed called the "Pulse Stream," where users can share and interact with content. The application is built with Astro.js and Firebase, emphasizing performance, real-time interactivity, and a modern, visually engaging design.
 
-This project is a prototype for a "Social OS," a futuristic, decentralized social network built with Astro.js. It features a "Spatial Stream" interface, a 3-column layout designed for intuitive navigation and a rich user experience. The application prioritizes a dark, immersive aesthetic with interactive, "glass-like" UI elements.
+## 2. Current State
 
-## Implemented Features, Styles, and Designs
+*   **Framework:** Astro.js
+*   **Backend:** Firebase (Authentication and Firestore)
+*   **Core Feature:** A real-time "Pulse Stream" feed that displays posts from a Firestore collection.
+*   **Authentication:** Users can sign in with their Google accounts to create new posts.
+*   **Layout:** A three-column layout with a central feed, a user identity card on the left, and an "Intelligence Hub" on the right.
+*   **Branding:** The name is established as "LitLabs OS", but the design is basic and requires polish.
+*   **Styling:** Basic styling with Tailwind CSS and a `digital-dust` background effect.
 
-### Core Architecture: Interactive Islands
+## 3. Project Update Plan
 
-The application leverages Astro's "Islands Architecture" to make the central feed a fully interactive experience.
+**Goal:** To elevate the existing "LitLabs OS" application from a functional prototype into a polished, visually stunning, and cohesive product that embodies its brand as a next-generation AI operating system.
 
-*   **The Spatial Stream:** A 3-column layout remains the core structure.
-    *   **Column 1 (Left): Identity Core:** A static navigation and profile area.
-    *   **Column 2 (Center): The Pulse Stream:** The main content feed, powered by a client-side interactive "island."
-    *   **Column 3 (Right): Intelligence Hub:** A static area for future AI tools, now housing the `AgentConsole`.
+**Detailed Steps:**
 
-### Key Components
+1.  **Solidify the "LitLabs OS" Brand:**
+    *   Update the page title and meta description in `src/layouts/Layout.astro` to be more descriptive and on-brand.
+    *   Ensure all placeholder text is replaced with content that reflects the "LitLabs OS" identity.
 
-*   **`InteractiveFeed.jsx`:** The core Preact component for the user's interactive experience. It manages the state of the "Pulse Stream," including live post creation with text and images.
+2.  **Visual Overhaul:**
+    *   **Layout:** Redesign the main page layout to be more dynamic, modern, and less rigid.
+    *   **Background Effect:** Refine the `digital-dust` background effect to be more subtle and sophisticated.
 
-*   **`Post.jsx`:** A reusable Preact component for rendering individual posts within the `InteractiveFeed` island.
+3.  **Component Refinement:**
+    *   **`Services.astro`:** Remove the static "Last Synced" date to make the component feel more dynamic and less like a template.
 
-*   **`AgentConsole.jsx`:** A static Preact component that displays a system status message. All authentication logic has been removed to resolve application instability.
-
-*   **`Feed.astro`:** The Astro component that loads the `InteractiveFeed` island, passing in initial server-fetched posts.
-
-*   **`Layout.astro`:** The master layout file, establishing global styles and the overall page structure.
-
-### Visual Design & UX
-
-*   **Aesthetic:** Dark, futuristic theme with glowing text and "glassmorphic" cards.
-*   **Background:** A multi-layered, animated background creating a sense of depth and activity.
-*   **Interactivity:** The central feed is fully interactive. New posts are added in real-time without a page reload.
-
-## Deprecated Components
-
-*   `Hero.astro`, `Features.astro`, `Services.astro`
-*   `CreatePost.astro` (functionality merged into `InteractiveFeed.jsx`)
-*   `Post.astro` (replaced by `Post.jsx`)
-*   All Supabase Integration Files (`supabase.ts`, `middleware.ts`, etc.)
-
-## Error Resolution Log
-
-1.  **Deployment Failure:** The initial deployment to classic Firebase Hosting failed because the application requires a server environment. **Solution:** The recommended path is to use Firebase App Hosting.
-2.  **`your-project-id.supabase.co` server IP not found:** This crash was caused by unconfigured Supabase files from a previous setup. **Solution:** Removed all core Supabase integration files (`supabase.ts`, `middleware.ts`, etc.).
-3.  **`FailedToLoadModuleSSR: Could not import ../lib/supabase`:** A follow-up crash occurred because the `AgentConsole.jsx` component was still trying to import the deleted Supabase library. **Solution:** Rewrote `AgentConsole.jsx` to remove all Supabase dependencies and authentication logic, converting it into a static display component.
-
-## Current Task: Completed
-
-The application is now fully stable. All conflicting, unconfigured backend code has been removed. The core feature set, including the interactive feed, is functional within the local development environment. The project is now in a clean state, ready for further development or proper deployment setup.
+4.  **Enhance User Experience:**
+    *   Improve the overall flow and interactivity of the application.
+    *   Ensure a consistent and polished look and feel across all components.
