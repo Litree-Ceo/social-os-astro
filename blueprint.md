@@ -1,41 +1,59 @@
-# Project Blueprint
+# LitreeLabStudio - Project Blueprint
 
-## Overview
+## 🚀 Overview: The "Tri-Core" Social Media OS
 
-This project is a modern, content-focused website built with Astro.js. It aims to be highly performant, SEO-friendly, and visually appealing. The site will showcase the capabilities of Astro's "Islands Architecture" by combining static content with interactive components.
+LitreeLabStudio is a next-generation web application that functions as a "Social Media Operating System." It merges the community features of Facebook, the deep customization of MySpace, and the immersive media experience of Kodi into a single, seamless platform. It's built on a modern, full-stack architecture using Astro for the frontend shell and React for interactive UI components, all powered by a Firebase backend.
 
-## Implemented Features
+---
 
-### Initial Setup
+## 🏗️ Core Architecture
 
-*   Astro.js project structure.
-*   Basic layout with Google Fonts (Inter and Space Grotesk).
-*   File-based routing.
+### 1. The "Tri-Core" Engine (View States)
 
-## Current Plan: "Get everything my site needs"
+The application is a Single Page Application (SPA) with three distinct, user-toggleable "View States":
 
-The user has requested a comprehensive update to the site. The following steps will be taken to fulfill this request:
+| Mode         | Inspiration | Primary Tech             | Core Function                                           |
+|--------------|-------------|--------------------------|---------------------------------------------------------|
+| **The Grid**   | Facebook    | React + Firestore        | Social feed, notifications, and group updates.          |
+| **The Canvas** | MySpace     | Dynamic `<style>` Injection | Fully user-customized profile with auto-playing media.  |
+| **The Cinema** | Kodi        | React + Framer Motion    | A "10-foot" UI with horizontal blades for media browsing. |
 
-1.  **Enhance the Layout:**
-    *   Create a more robust and visually appealing layout in `src/layouts/Layout.astro`.
-    *   Add a navigation bar with links to different pages.
-    *   Ensure the layout is responsive.
+### 2. Backend & Database (Firebase)
 
-2.  **Apply Modern Styling:**
-    *   Update `src/styles/global.css` with a modern color palette, typography, and spacing.
-    *   Implement a consistent design system.
-    *   Add a subtle noise texture to the background for a premium feel.
-    *   Use drop shadows to create depth.
+*   **Authentication:** Firebase Auth handles user registration and login (Email/Password).
+*   **Database (Firestore):**
+    *   `users` collection: Stores `uid`, `displayName`, `profileImage`, and the `userConfig` object.
+    *   `userConfig` object: Contains `themeCSS` (a string of raw CSS), `currentMood`, `nowPlayingURL`, and a `top8Friends` array.
+    *   `media` collection: Caches metadata for movies/music, synced from external APIs (e.g., TMDB, Spotify).
 
-3.  **Add Homepage Content:**
-    *   Update `src/pages/index.astro` with compelling content.
-    *   Use a hero section to grab the user's attention.
-    *   Showcase features in a card-based layout.
+### 3. Frontend Technology
 
-4.  **Introduce Interactivity:**
-    *   Create a simple interactive component (e.g., a theme switcher) to demonstrate Astro's partial hydration.
-    *   Use a UI framework like React for the interactive "island."
+*   **Shell & Routing:** **Astro** provides the file-based routing, static site generation for landing pages, and the overall project structure.
+*   **Interactive UI:** **React** is used to build the complex, stateful components that make up the "Tri-Core" engine (e.g., the feed, the profile editor, the media player). These are rendered as interactive "islands" within the Astro framework.
+*   **Styling:** **Tailwind CSS** provides the utility-first foundation for a clean, modern, and responsive design. User-generated themes override these base styles.
 
-5.  **Review and Refine:**
-    *   Check for errors and ensure the site is fully functional.
-    *   Verify that the design is responsive and accessible.
+---
+
+## ✨ "Badass" Features & Future Roadmap
+
+*   **Vibe-Sync Media Player:** The site's background animations and UI elements will pulse to the BPM of the user's profile song, analyzed in real-time with the Web Audio API.
+*   **AI-Powered "Skin-Shifting":** A text-to-theme engine powered by Gemini. Users can type a descriptive prompt (e.g., "Make my profile look like a neon-rainy night in Tokyo") to generate and apply custom CSS instantly.
+*   **"The Portal" Watch Party:** An overlay in "Cinema Mode" that shows what friends are watching, allowing users to "jump in" to a synchronized media stream.
+*   **Digital "Sticker" Economy:** Users can place interactive 3D widgets (built with Three.js or Lottie) on their profiles that react to mouse movements.
+*   **"Ghost Mode" Privacy:** A single-click "Burner" toggle that instantly masks a user's profile, anonymizes their activity, and applies a generic "Under Construction" theme.
+
+---
+
+## ✅ Current Plan & Immediate Tasks
+
+1.  **Stabilize the Foundation:**
+    *   **Fix broken dependencies:** Correctly install and configure `tailwindcss` and `astro-icon` to resolve the current site errors.
+    *   **Verify render:** Ensure the basic Astro layout and homepage render correctly with the intended styles.
+
+2.  **Implement Core Architecture:**
+    *   **Integrate Firebase:** Set up the Firebase SDK and create the connection to Firestore and Auth.
+    *   **Build the "Tri-Core" Switcher:** Develop the main UI control that allows users to toggle between The Grid, The Canvas, and The Cinema views.
+    *   **Develop the first Core Component:** Begin with "The Canvas" (MySpace mode), creating the React component for the user profile page.
+
+3.  **Begin Feature Implementation:**
+    *   **Custom CSS Injector:** Implement the logic to pull the `themeCSS` string from Firestore and apply it to the user's profile page.
